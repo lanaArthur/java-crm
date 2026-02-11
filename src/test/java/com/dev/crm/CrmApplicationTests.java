@@ -1,13 +1,13 @@
-package com.arthur.crm;
+package com.dev.crm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CrmSystemApplicationTests {
+class CrmApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+@Test
+void contextLoads() {
+}
 
 }
