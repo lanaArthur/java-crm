@@ -3,7 +3,7 @@ package com.dev.crm;
 import jakarta.persistence.Embeddable; 
 
 @Embeddable
-public class contato {
+public class Contato {
     private String nome;
     private String telefone;
     private String email;

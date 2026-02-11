@@ -1,7 +1,7 @@
 package com.dev.crm;
 
 import jakarta.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -10,34 +10,42 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String razaoSocial;
-    
-    @Column(unique = true)
     private String cnpj;
-
-    // Uso da classe Contato para o Representante
-    @Embedded
-    @AttributeOverrides({
-        @AttributeOverride(name = "nome", column = @Column(name = "rep_nome")),
-        @AttributeOverride(name = "telefone", column = @Column(name = "rep_telefone")),
-        @AttributeOverride(name = "email", column = @Column(name = "rep_email"))
-    })
-    private Contato representanteLegal;
-
-    // Uso da classe Contato para o Administrador
-    @Embedded
-    @AttributeOverrides({
-        @AttributeOverride(name = "nome", column = @Column(name = "adm_nome")),
-        @AttributeOverride(name = "telefone", column = @Column(name = "adm_telefone")),
-        @AttributeOverride(name = "email", column = @Column(name = "adm_email"))
-    })
-    private Contato administrador;
+    private String razaoSocial;
+    private String repNome;
+    private String repEmail;
+    private String repTelefone;
+    private Double ultimaReceitaContratada;
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    private Set<Operadora> operadoras;
+    private List<Operadora> operadorasAtuais;
 
-    private Double ultimaReceitaContratada;
+    // Construtor vazio (obrigatório para o Java)
+    public Cliente() {}
 
-    // Getters e Setters para todos os campos...
+    // GETTERS E SETTERS (Isso resolve o problema do "{}")
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getCnpj() { return cnpj; }
+    public void setCnpj(String cnpj) { this.cnpj = cnpj; }
+
+    public String getRazaoSocial() { return razaoSocial; }
+    public void setRazaoSocial(String razaoSocial) { this.razaoSocial = razaoSocial; }
+
+    public String getRepNome() { return repNome; }
+    public void setRepNome(String repNome) { this.repNome = repNome; }
+
+    public String getRepEmail() { return repEmail; }
+    public void setRepEmail(String repEmail) { this.repEmail = repEmail; }
+
+    public String getRepTelefone() { return repTelefone; }
+    public void setRepTelefone(String repTelefone) { this.repTelefone = repTelefone; }
+
+    public Double getUltimaReceitaContratada() { return ultimaReceitaContratada; }
+    public void setUltimaReceitaContratada(Double ultimaReceitaContratada) { this.ultimaReceitaContratada = ultimaReceitaContratada; }
+
+    public List<Operadora> getOperadorasAtuais() { return operadorasAtuais; }
+    public void setOperadorasAtuais(List<Operadora> operadorasAtuais) { this.operadorasAtuais = operadorasAtuais; }
 }
