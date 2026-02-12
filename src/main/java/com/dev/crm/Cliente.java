@@ -1,8 +1,9 @@
 package com.dev.crm;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*; // CORRIGIDO: com 's' depois do 'n'
+import jakarta.validation.constraints.*;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Cliente {
@@ -21,13 +22,47 @@ public class Cliente {
     @ElementCollection
     private List<String> operadorasAtuais;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Contato> contatos = new ArrayList<>();
+
     // Getters e Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-    public String getCnpj() { return cnpj; }
-    public void setCnpj(String cnpj) { this.cnpj = cnpj; }
-    public List<String> getOperadorasAtuais() { return operadorasAtuais; }
-    public void setOperadorasAtuais(List<String> operadorasAtuais) { this.operadorasAtuais = operadorasAtuais; }
+    public Long getId() { 
+        return id; 
+    }
+
+    public void setId(Long id) { 
+        this.id = id; 
+    }
+
+    public String getNome() { 
+        return nome; 
+    }
+
+    public void setNome(String nome) { 
+        this.nome = nome; 
+    }
+
+    public String getCnpj() { 
+        return cnpj; 
+    }
+
+    public void setCnpj(String cnpj) { 
+        this.cnpj = cnpj; 
+    }
+
+    public List<String> getOperadorasAtuais() { 
+        return operadorasAtuais; 
+    }
+
+    public void setOperadorasAtuais(List<String> operadorasAtuais) { 
+        this.operadorasAtuais = operadorasAtuais;
+    } 
+
+    public List<Contato> getContatos() { 
+        return contatos;
+    }
+
+    public void setContatos(List<Contato> contatos) { 
+        this.contatos = contatos; 
+    }
 }
